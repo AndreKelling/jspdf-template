@@ -1,10 +1,10 @@
-export default (doc, address, startY, fontSizes, lineSpacing) => {
+export default (doc, address, startY, fontSize, lineSpacing) => {
 
     const startX = 57;
 
     //-------Customer Info Address---------------------
     doc.setFontType('normal');
-    doc.setFontSize(fontSizes.NormalFontSize);
+    doc.setFontSize(fontSize);
 
     address = Object.values(address);
 

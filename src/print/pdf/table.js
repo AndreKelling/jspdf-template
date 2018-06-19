@@ -27,19 +27,30 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
 
     items.map(item => {
 
+        // @todo: add this workaround for missing `widths` and `kerning` values in splitTextToSize function, because used custom font ist not really nice unicode conform
+        const fontWidths = doc.internal.getFont('WorkSans', 'normal').metadata.subset.unicodes;
+        const fontKerning = doc.internal.getFont('times', 'normal').metadata.Unicode.kerning;
+
         doc.setFontType('bold');
-        doc.text(item.title, startX, startY);
-        const heightTitle = doc.getTextDimensions(item.title).h;
+        const splitTitle = doc.splitTextToSize(
+            item.title,
+            tablecol2X - startX - lineSpacing,
+            {widths: fontWidths, kerning: fontKerning}
+        );
+        doc.text(splitTitle, startX, startY);
+        const heightTitle = doc.getTextDimensions(splitTitle).h;
+
+        // tweak Y to be below title. fits nicer with long descriptions. descriptions will be probably taking a row space while titles do not.
+        startY += heightTitle;
 
         doc.setFontType('normal');
-        const splitTitle = doc.splitTextToSize(
+        const splitDescription = doc.splitTextToSize(
             item.description,
             tablecol2X - startX - lineSpacing,
-            // @todo: add this workaround for missing `widths` and `kerning` values in splitTextToSize function, because used custom font ist not really nice unicode conform
-            {widths: doc.internal.getFont('WorkSans', 'normal').metadata.subset.unicodes, kerning: doc.internal.getFont('times', 'normal').metadata.Unicode.kerning}
+            {widths: fontWidths, kerning: fontKerning}
         );
-        doc.text(splitTitle, startX, startY + heightTitle);
-        const heightDescription = doc.getTextDimensions(splitTitle).h;
+        doc.text(splitDescription, startX, startY);
+        const heightDescription = doc.getTextDimensions(splitDescription).h;
 
         doc.text(item.qty, tablecol2X, startY);
 
@@ -47,7 +58,7 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
 
         doc.text(item.total, endX, startY, 'right');
 
-        startY += heightTitle + heightDescription + lineSpacing;
+        startY += heightDescription + lineSpacing;
     });
 
     return startY;

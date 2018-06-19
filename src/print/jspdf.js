@@ -5,6 +5,7 @@ import { getDataUri } from '../tools';
 import setFont from './setFont';
 import addressSender from './pdf/addressSender';
 import addressCustomer from './pdf/addressCustomer';
+import heading from './pdf/heading';
 import table from './pdf/table';
 import totals from './pdf/totals';
 
@@ -53,7 +54,7 @@ export default (printData) => {
                 'total':'12,00 €'
             },
             [3]: {
-                'title':'Capability Training',
+                'title':'Capability Training Closure Business Rules Appliance Regulatory',
                 'description':'setup your skill mentoring for future reference & allow $ signs to getUsed `because` this should get covered too. Let me just explain not why ß.',
                 'amount':'256,00 €',
                 'qty':'2',
@@ -123,46 +124,26 @@ export default (printData) => {
     // Customer address
 
     startY += 10;
-    startY = addressCustomer(doc, printData.address, startY, fontSizes, lineSpacing);
+    startY = addressCustomer(doc, printData.address, startY, fontSizes.NormalFontSize, lineSpacing);
 
     // <><>><><>><>><><><><><>>><><<><><><><>
     // INVOICE DATA
     // <><>><><>><>><><><><><>>><><<><><><><>
 
     // <><>><><>><>><><><><><>>><><<><><><><>
-    // Invoicenumber and date
+    // Invoicenumber, -date and subject
 
-    startY = 255;
-    const invoiceNrTxt = "INVOICE NO: ";
-
-    doc.setFontSize(fontSizes.SubTitleFontSize);
-    doc.setFontType('bold');
-    doc.text(invoiceNrTxt, startX, startY);
-    doc.setFontType('normal');
-    doc.text(printData.invoice.number, doc.getStringUnitWidth(invoiceNrTxt) * fontSizes.SubTitleFontSize + 65, startY);
-    doc.text(printData.invoice.date, endX, startY, 'right');
-
-    // before first fold mark on the paper
-    startY = 277;
-
-    doc.setFontSize(fontSizes.TitleFontSize);
-    doc.setFontType('bold');
-    doc.text("Invoice for", startX, startY += lineSpacing + 2);
-    doc.text(printData.invoice.subject, startX, startY += lineSpacing * 2);
-
-    doc.setDrawColor(206, 218, 192);
-    doc.setLineWidth(0.5);
-    doc.line(startX, startY + lineSpacing/2, endX, startY + lineSpacing/2);
+    startY = heading(doc, printData.invoice, startY, fontSizes, lineSpacing);
 
     // <><>><><>><>><><><><><>>><><<><><><><>
-    // Table
+    // Table with items
 
     startY = table(doc, printData.items, startY, fontSizes.NormalFontSize, lineSpacing);
 
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Totals
 
-    totals(doc, startY, fontSizes, lineSpacing);
+    totals(doc, startY, fontSizes.NormalFontSize, lineSpacing);
 
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Fold Marks
