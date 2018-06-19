@@ -1,6 +1,7 @@
 import jsPDF from 'jspdf';
 import 'jspdf-customfonts';
 import './default_vfs';
+import { getDataUri } from '../tools';
 import setFont from './setFont';
 import address from './pdf/address';
 import customerData from './pdf/customerData';
@@ -8,12 +9,12 @@ import totals from './pdf/totals';
 
 export default (somedata) => {
 
-    console.log('print');
+    //console.log('print');
     const doc = new jsPDF('p', 'pt');
 
-    //doc.addImage(company_logo.src, 'PNG', startX,startY+=50, company_logo.w,company_logo.h);
-
     setFont(doc);
+
+    // SETTINGS
 
     const fontSizes = {
         HeadTitleFontSize:18,
@@ -25,7 +26,19 @@ export default (somedata) => {
     };
     const lineSpacing = 12;
 
-    let startY = 0;
+    let startY = 50;
+    const pageCenterX = doc.internal.pageSize.getWidth() / 2;
+    // COMPONENTS
+
+    const logoLoaded = getDataUri('/img/logo.png').then(
+        logo => {
+            doc.addImage(logo, 'PNG', pageCenterX - 20, 5, 40, 40);
+        }
+    ).catch(
+        error => {
+            console.log(error);
+        }
+    );
 
     startY = address(doc, startY, fontSizes, lineSpacing);
 
@@ -33,5 +46,7 @@ export default (somedata) => {
 
     totals(doc, startY, fontSizes, lineSpacing);
 
-    //doc.save("invoice.pdf");
+    logoLoaded.then(
+        () => doc.save("invoice.pdf")
+    );
 }
