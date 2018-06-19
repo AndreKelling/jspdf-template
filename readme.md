@@ -8,3 +8,9 @@ Included custom fonts with this [jsPDF CustomFont support plugin](https://github
 
 1. `yarn install`
 2. `yarn run webpack`
+
+## Description
+
+Print "Templates" are hidden in `src/print/pdf`.
+
+While `src/print/jspdf.js` serves the main start for the printing functionality.

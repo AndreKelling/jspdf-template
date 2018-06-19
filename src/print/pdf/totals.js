@@ -1,4 +1,3 @@
-import jsPDF from 'jspdf';
 import dataFormater from "../data-formater";
 
 export default (doc, startY, fontSizes, lineSpacing) => {
