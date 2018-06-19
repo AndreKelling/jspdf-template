@@ -26,7 +26,8 @@ export default (printData) => {
         },
         'invoice': {
             'number':'2018-15738',
-            'date':'28.06.2018'
+            'date':'28.06.2018',
+            'subject': 'https://andrekelling.de'
         }
     };
 
@@ -37,15 +38,20 @@ export default (printData) => {
     // SETTINGS
 
     const fontSizes = {
-        HeadTitleFontSize:18,
-        Head2TitleFontSize:16,
         TitleFontSize:14,
         SubTitleFontSize:12,
         NormalFontSize:10,
         SmallFontSize:8
     };
     const lineSpacing = 12;
+
+    let startX = 57;
     let startY = 128;
+
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageCenterX = pageWidth / 2;
+    const endX =  pageWidth - startX;
+
 
     // <><>><><>><>><><><><><>>><><<><><><><>
     // COMPONENTS
@@ -55,7 +61,7 @@ export default (printData) => {
 
     const logoLoaded = getDataUri('/img/logo.png').then(
         logo => {
-            const pageCenterX = doc.internal.pageSize.getWidth() / 2;
+            const pageCenterX = pageWidth / 2;
             doc.addImage(logo, 'PNG', pageCenterX - 25, 25, 50, 50);
         }
     ).catch(
@@ -84,7 +90,7 @@ export default (printData) => {
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Customer address
 
-    startY += 20;
+    startY += 10;
     startY = addressCustomer(doc, printData.address, startY, fontSizes, lineSpacing);
 
     // <><>><><>><>><><><><><>>><><<><><><><>
@@ -94,51 +100,50 @@ export default (printData) => {
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Invoicenumber and date
 
+    startY = 255;
+    const invoiceNrTxt = "INVOICE NO: ";
 
-    const invoiceJSON = dataFormater()[2];
-
-    const rightStartCol1 = 400;
-    const rightStartCol2 = 480;
-    const InitialstartY = 50;
-    const pageCenterX = doc.internal.pageSize.getWidth() / 2;
-
-    let tempY = InitialstartY;
-
-
+    doc.setFontSize(fontSizes.SubTitleFontSize);
     doc.setFontType('bold');
-    doc.text("INVOICE NO: ", rightStartCol1, tempY += lineSpacing);
+    doc.text(invoiceNrTxt, startX, startY);
     doc.setFontType('normal');
-    doc.text(printData.invoice.number, rightStartCol2, tempY);
+    doc.text(printData.invoice.number, doc.getStringUnitWidth(invoiceNrTxt) * fontSizes.SubTitleFontSize + 65, startY);
+    doc.text(printData.invoice.date, endX, startY, 'right');
 
+    // before first fold mark on the paper
+    startY = 277;
 
+    doc.setFontSize(fontSizes.TitleFontSize);
     doc.setFontType('bold');
-    doc.text("INVOICE Date: ", rightStartCol1, tempY += lineSpacing);
-    doc.setFontType('normal');
-    doc.text(printData.invoice.date, rightStartCol2, tempY);
-
-    doc.setFontType('normal');
-
-    doc.setLineWidth(1);
-    doc.line(20, startY + lineSpacing, 220, startY + lineSpacing);
-    doc.line(380, startY + lineSpacing, 580, startY + lineSpacing);
-
-    doc.setFontSize(fontSizes.Head2TitleFontSize);
-    doc.setFontType('bold');
-
-    doc.text("TAX INVOICE", pageCenterX, startY += lineSpacing + 2, 'center');
-
-    doc.setFontSize(fontSizes.NormalFontSize);
-    doc.setFontType('bold');
-
-    // Totals
+    doc.text("Invoice for", startX, startY += lineSpacing + 2);
+    doc.text(printData.invoice.subject, startX, startY += lineSpacing * 2);
 
     doc.setDrawColor(206, 218, 192);
     doc.setLineWidth(0.5);
-    doc.line(20, startY + lineSpacing, 220, startY + lineSpacing);
-    doc.line(380, startY + lineSpacing, 580, startY + lineSpacing);
+    doc.line(startX, startY + lineSpacing/2, endX, startY + lineSpacing/2);
+
+    // <><>><><>><>><><><><><>>><><<><><><><>
+    // Table
+
+    doc.setFontSize(fontSizes.NormalFontSize);
+    doc.setFontType('normal');
+
+    // <><>><><>><>><><><><><>>><><<><><><><>
+    // Totals
 
     totals(doc, startY, fontSizes, lineSpacing);
 
+    // <><>><><>><>><><><><><>>><><<><><><><>
+    // Fold Marks
+
+    const foldX = 12;
+    const foldMarksY = [298,421,595];
+
+    foldMarksY.map(valueY => {
+        doc.line(foldX, valueY, foldX + 23, valueY);
+    });
+
+    // <><>><><>><>><><><><><>>><><<><><><><>
     // Print
     Promise.all([logoLoaded, svgLoaded]).then(() => {
         doc.save("invoice.pdf");
