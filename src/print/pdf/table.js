@@ -38,7 +38,7 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
             {widths: fontWidths, kerning: fontKerning}
         );
         doc.text(splitTitle, startX, startY);
-        const heightTitle = doc.getTextDimensions(splitTitle).h;
+        const heightTitle = splitTitle.length * doc.internal.getLineHeight();
 
         // tweak Y to be below title. fits nicer with long descriptions. descriptions will be probably taking a row space while titles do not.
         startY += heightTitle;
@@ -50,7 +50,7 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
             {widths: fontWidths, kerning: fontKerning}
         );
         doc.text(splitDescription, startX, startY);
-        const heightDescription = doc.getTextDimensions(splitDescription).h;
+        const heightDescription = splitDescription.length * doc.internal.getLineHeight();
 
         doc.text(item.qty, tablecol2X, startY);
 
