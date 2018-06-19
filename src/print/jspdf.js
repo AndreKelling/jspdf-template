@@ -5,8 +5,8 @@ import { getDataUri } from '../tools';
 import setFont from './setFont';
 import addressSender from './pdf/addressSender';
 import addressCustomer from './pdf/addressCustomer';
+import table from './pdf/table';
 import totals from './pdf/totals';
-import dataFormater from "./data-formater";
 
 export default (printData) => {
 
@@ -27,7 +27,39 @@ export default (printData) => {
         'invoice': {
             'number':'2018-15738',
             'date':'28.06.2018',
-            'subject': 'https://andrekelling.de'
+            'subject':'https://andrekelling.de',
+            'total':'3.362,00 €'
+        },
+        'items': {
+            [0]: {
+                'title':'Templating',
+                'description':'predefined custom specialities for vague usage in a framework. Sense a light case weight value for exisiting solution services. Provide a case for universal properties.',
+                'amount':'1.200,00 €',
+                'qty':'2',
+                'total':'2.400,00 €'
+            },
+            [1]: {
+                'title':'Design',
+                'description':'outwork digital screen UX in different cases for utilities',
+                'amount':'876,00 €',
+                'qty':'0.5',
+                'total':'438,00 €'
+            },
+            [2]: {
+                'title':'Security',
+                'description':'develop a 100% secure workflow mechanism by shutting down your PC',
+                'amount':'12,00 €',
+                'qty':'1',
+                'total':'12,00 €'
+            },
+            [3]: {
+                'title':'Capability Training',
+                'description':'setup your skill mentoring for future reference & allow $ signs to getUsed `because` this should get covered too. Let me just explain not why ß.',
+                'amount':'256,00 €',
+                'qty':'2',
+                'total':'512,00 €'
+            }
+
         }
     };
 
@@ -125,8 +157,7 @@ export default (printData) => {
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Table
 
-    doc.setFontSize(fontSizes.NormalFontSize);
-    doc.setFontType('normal');
+    startY = table(doc, printData.items, startY, fontSizes.NormalFontSize, lineSpacing);
 
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Totals
