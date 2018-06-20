@@ -11,15 +11,18 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
     doc.setFontType('normal');
 
     //-------Table Header---------------------
-    startY += lineSpacing;
+    startY += lineSpacing * 1.5;
+
     doc.text("Items", startX, startY);
     doc.text("Qty", tablecol2X, startY);
     doc.text("Price", tablecol3X, startY);
     doc.text("Total", endX, startY, 'right');
 
-    doc.line(startX, startY + lineSpacing/2, endX, startY + lineSpacing/2);
+    startY += lineSpacing;
 
-    startY += lineSpacing * 2;
+    doc.line(startX, startY, endX, startY);
+
+    startY += lineSpacing * 1.5;
 
     //-------Table Body---------------------
 

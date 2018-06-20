@@ -77,9 +77,10 @@ export default (printData) => {
         SmallFontSize:8
     };
     const lineSpacing = 12;
+    const newPageY = 255;
 
     let startX = 57;
-    let startY = 128;
+    let startY = 130; // bit more then 45mm
 
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageCenterX = pageWidth / 2;
@@ -90,33 +91,8 @@ export default (printData) => {
     // COMPONENTS
     // <><>><><>><>><><><><><>>><><<><><><><>
 
-    // Graphics first because they are loaded not immediately via promise and need fix X ad Y values
-
-    const logoLoaded = getDataUri('/img/logo.png').then(
-        logo => {
-            const pageCenterX = pageWidth / 2;
-            doc.addImage(logo, 'PNG', pageCenterX - 25, 25, 50, 50);
-        }
-    ).catch(
-        error => {
-            console.log(error);
-        }
-    );
-
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Sender's address
-
-    const svgLoaded = getDataUri('/img/stripes_down.svg').then(
-        img => {
-            // @todo: add smaller svg image with less empty space around
-            //doc.addImage(logo, 'PNG', startX,  128 + lineSpacing/2, 384, 55);
-            doc.addImage(img, 'PNG', 230, 112, 307, 44);
-        }
-    ).catch(
-        error => {
-            console.log(error);
-        }
-    );
 
     startY = addressSender(doc, printData.addressSender, startY, fontSizes.NormalFontSize, lineSpacing);
 
@@ -144,20 +120,72 @@ export default (printData) => {
     // Totals
 
     totals(doc, startY, fontSizes.NormalFontSize, lineSpacing);
+    // <><>><><>><>><><><><><>>><><<><><><><>
+    // REPEATED PAGE COMPONENTS
+    // <><>><><>><>><><><><><>>><><<><><><><>
+
+    const pageNr = doc.internal.getNumberOfPages();
 
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Fold Marks
 
     const foldX = 12;
-    const foldMarksY = [298,421,595];
+    const foldMarksY = [288,411,585];
+    doc.setDrawColor(206, 218, 192);
+    doc.setLineWidth(0.5);
+
+    let n = 0;
+
+    while (n < pageNr) {
+        n++;
+
+        doc.setPage(n);
 
     foldMarksY.map(valueY => {
         doc.line(foldX, valueY, foldX + 23, valueY);
     });
+    }
 
     // <><>><><>><>><><><><><>>><><<><><><><>
-    // Print
-    Promise.all([logoLoaded, svgLoaded]).then(() => {
+    // Graphics
+
+    const logoLoaded = getDataUri('/img/logo.png').then(
+        logo => {
+            n = 0;
+            while (n < pageNr) {
+                n++;
+                doc.setPage(n);
+                doc.addImage(logo, 'PNG', pageCenterX - 25, 25, 50, 50);
+            }
+        }
+    ).catch(
+        error => {
+            console.log(error);
+        }
+    );
+
+    const svgLoaded = getDataUri('/img/stripes_ecks_bottom.svg').then(
+        img => {
+            n = 0;
+            while (n < pageNr) {
+                n++;
+                doc.setPage(n);
+                doc.addImage(img, 'PNG', 205, 136, 333, 27);
+            }
+        }
+    ).catch(
+        error => {
+            console.log(error);
+        }
+    );
+
+    // <><>><><>><>><><><><><>>><><<><><><><>
+    // PRINT
+    // <><>><><>><>><><><><><>>><><<><><><><>
+
+    Promise.all([logoLoaded, svgLoaded]).then((data) => {
+        //sconsole.log(data);
         doc.save("invoice.pdf");
+        console.log('print doc');
     });
 }

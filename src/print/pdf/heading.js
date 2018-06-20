@@ -6,14 +6,15 @@ export default (doc, data, startY, fontSizes, lineSpacing) => {
     const endX =  pageWidth - startX;
 
     doc.setFontSize(fontSizes.SubTitleFontSize);
-    startY = 255;
+
+    startY += 55;
     doc.text(invoiceNrTxt, startX, startY);
     doc.text(data.number, doc.getStringUnitWidth(invoiceNrTxt) * fontSizes.SubTitleFontSize + 65, startY);
     // @todo: city as single value from invoice??
     doc.text('Berlin, '+data.date, endX, startY, 'right');
 
     // set Y before first fold mark on the paper
-    startY = 277;
+    startY += lineSpacing * 2;
 
     doc.setFontSize(fontSizes.TitleFontSize);
     doc.text("Invoice for", startX, startY += lineSpacing + 2);
@@ -21,7 +22,7 @@ export default (doc, data, startY, fontSizes, lineSpacing) => {
 
     doc.setDrawColor(206, 218, 192);
     doc.setLineWidth(0.5);
-    startY += lineSpacing/2;
+    startY += lineSpacing;
     doc.line(startX, startY, endX, startY);
 
     return startY;
