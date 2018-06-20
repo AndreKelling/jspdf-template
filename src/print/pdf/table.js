@@ -4,8 +4,8 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
     const pageWidth = doc.internal.pageSize.getWidth();
     const endX =  pageWidth - startX;
 
-    const tablecol2X = 366;
-    const tablecol3X = 411;
+    const tablecol2X = 386;
+    const tablecol3X = 460;
 
     doc.setFontSize(fontSize);
     doc.setFontType('normal');
@@ -14,8 +14,8 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
     startY += lineSpacing * 1.5;
 
     doc.text("Items", startX, startY);
-    doc.text("Qty", tablecol2X, startY);
-    doc.text("Price", tablecol3X, startY);
+    doc.text("Qty", tablecol2X, startY, 'right');
+    doc.text("Price", tablecol3X, startY, 'right');
     doc.text("Total", endX, startY, 'right');
 
     startY += lineSpacing;
@@ -37,7 +37,7 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
         doc.setFontType('bold');
         const splitTitle = doc.splitTextToSize(
             item.title,
-            tablecol2X - startX - lineSpacing,
+            tablecol2X - startX - lineSpacing * 1.5,
             {widths: fontWidths, kerning: fontKerning}
         );
         doc.text(splitTitle, startX, startY);
@@ -49,15 +49,15 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
         doc.setFontType('normal');
         const splitDescription = doc.splitTextToSize(
             item.description,
-            tablecol2X - startX - lineSpacing,
+            tablecol2X - startX - lineSpacing * 1.5,
             {widths: fontWidths, kerning: fontKerning}
         );
         doc.text(splitDescription, startX, startY);
         const heightDescription = splitDescription.length * doc.internal.getLineHeight();
 
-        doc.text(item.qty, tablecol2X, startY);
+        doc.text(item.qty, tablecol2X, startY, 'right');
 
-        doc.text(item.amount, tablecol3X, startY);
+        doc.text(item.amount, tablecol3X, startY, 'right');
 
         doc.text(item.total, endX, startY, 'right');
 
