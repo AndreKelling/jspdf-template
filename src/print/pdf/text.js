@@ -14,7 +14,7 @@ export default (doc, text, startY, fontSize, lineSpacing) => {
         {widths: fontWidths, kerning: fontKerning}
     );
     doc.text(splitText, startX, startY);
-    
+
     startY += splitText.length * doc.internal.getLineHeight();
 
     return startY;

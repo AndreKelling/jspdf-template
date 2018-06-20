@@ -3,6 +3,8 @@ export default (doc, invoice, startY, fontSize, lineSpacing) => {
     const pageWidth = doc.internal.pageSize.getWidth();
     const endX =  pageWidth - startX;
 
+    doc.setDrawColor(206, 218, 192);
+    doc.setLineWidth(0.5);
     doc.line(startX, startY, endX, startY);
 
     doc.setFontSize(fontSize);

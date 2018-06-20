@@ -120,7 +120,6 @@ export default (printData) => {
         SmallFontSize:9
     };
     const lineSpacing = 12;
-    const newPageY = 255;
 
     let startX = 57;
     let startY = 130; // bit more then 45mm
@@ -138,6 +137,17 @@ export default (printData) => {
     // Sender's address
 
     startY = addressSender(doc, printData.addressSender, startY, fontSizes.NormalFontSize, lineSpacing);
+
+    const svgLoaded = getDataUri('/img/stripes_ecks_bottom.svg').then(
+        img => {
+            doc.setPage(1);
+            doc.addImage(img, 'PNG', 205, 136, 333, 27);
+        }
+    ).catch(
+        error => {
+            console.log(error);
+        }
+    );
 
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Customer address
@@ -166,9 +176,6 @@ export default (printData) => {
 
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Text
-
-    doc.addPage();
-    startY = newPageY;
 
     startY = text(doc, printData.invoice.text, startY, fontSizes.NormalFontSize, lineSpacing);
 
@@ -222,28 +229,11 @@ export default (printData) => {
         }
     );
 
-    const svgLoaded = getDataUri('/img/stripes_ecks_bottom.svg').then(
-        img => {
-            n = 0;
-            while (n < pageNr) {
-                n++;
-                doc.setPage(n);
-                doc.addImage(img, 'PNG', 205, 136, 333, 27);
-            }
-        }
-    ).catch(
-        error => {
-            console.log(error);
-        }
-    );
-
     // <><>><><>><>><><><><><>>><><<><><><><>
     // PRINT
     // <><>><><>><>><><><><><>>><><<><><><><>
 
-    Promise.all([logoLoaded, svgLoaded]).then((data) => {
-        //sconsole.log(data);
+    Promise.all([logoLoaded, svgLoaded]).then(() => {
         doc.save("invoice.pdf");
-        console.log('print doc');
     });
 }

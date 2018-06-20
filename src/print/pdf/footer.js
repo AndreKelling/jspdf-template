@@ -3,8 +3,7 @@ import footerItem from './footerItem';
 export default (doc, data, fontSize, lineSpacing) => {
 
     const pageHeight = doc.internal.pageSize.getHeight();
-    const endY = pageHeight;
-    let startY = endY - 120;
+    let startY = pageHeight - 120;
 
     let startX = 57;
     const pageWidth = doc.internal.pageSize.getWidth();

@@ -1,3 +1,5 @@
+import newPage from '../newPage';
+
 export default (doc, items, startY, fontSize, lineSpacing) => {
 
     let startX = 57;
@@ -40,11 +42,7 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
             tablecol2X - startX - lineSpacing * 1.5,
             {widths: fontWidths, kerning: fontKerning}
         );
-        doc.text(splitTitle, startX, startY);
         const heightTitle = splitTitle.length * doc.internal.getLineHeight();
-
-        // tweak Y to be below title. fits nicer with long descriptions. descriptions will be probably taking a row space while titles do not.
-        startY += heightTitle;
 
         doc.setFontType('normal');
         const splitDescription = doc.splitTextToSize(
@@ -52,8 +50,18 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
             tablecol2X - startX - lineSpacing * 1.5,
             {widths: fontWidths, kerning: fontKerning}
         );
-        doc.text(splitDescription, startX, startY);
         const heightDescription = splitDescription.length * doc.internal.getLineHeight();
+
+        // needs new page check before item output
+        startY = newPage(doc, startY, heightDescription + heightTitle);
+
+        doc.setFontType('bold');
+        doc.text(splitTitle, startX, startY);
+        // tweak Y to be below title. fits nicer with long descriptions. descriptions will be probably taking a row space while titles do not.
+        startY += heightTitle;
+
+        doc.setFontType('normal');
+        doc.text(splitDescription, startX, startY);
 
         doc.text(item.qty, tablecol2X, startY, 'right');
 
