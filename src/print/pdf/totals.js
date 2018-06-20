@@ -1,27 +1,18 @@
-import dataFormater from "../data-formater";
+export default (doc, invoice, startY, fontSize, lineSpacing) => {
+    let startX = 57;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const endX =  pageWidth - startX;
 
-export default (doc, startY, fontSize, lineSpacing) => {
-    const companyJSON = dataFormater()[0];
-    const invoiceJSON = dataFormater()[2];
-
-    const rightcol1 = 340;
-    const rightcol2 = 430;
+    doc.line(startX, startY, endX, startY);
 
     doc.setFontSize(fontSize);
 
-    doc.setFontType('bold');
-    doc.text("Sub Total,", rightcol1, startY += lineSpacing);
-    doc.text(invoiceJSON.SubTotalAmnt, rightcol2, startY);
+    doc.text("Grand Total", startX, startY += lineSpacing * 2);
 
-    doc.setFontSize(fontSize);
+    doc.text(invoice.total, endX, startY, 'right');
 
-    doc.setFontType('bold');
-    doc.text("Grand Total Rs.", rightcol1, startY += lineSpacing);
+    startY += lineSpacing * 4;
 
-    doc.setFontType('normal');
-    doc.text(invoiceJSON.TotalAmnt, rightcol2, startY);
-
-    doc.setFontType('bold');
-    doc.text('For ' + companyJSON.CompanyName + ',', rightcol2, startY += lineSpacing + 50, 'center');
+    return startY;
 };
 
