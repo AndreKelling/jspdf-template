@@ -1,4 +1,4 @@
-export default (doc, text, startY, fontSize, lineSpacing) => {
+export default (doc, text, startY, fontSize) => {
 
     let startX = 57;
     doc.setFontSize(fontSize);
@@ -7,10 +7,10 @@ export default (doc, text, startY, fontSize, lineSpacing) => {
     const fontWidths = doc.internal.getFont('WorkSans', 'normal').metadata.subset.unicodes;
     const fontKerning = doc.internal.getFont('times', 'normal').metadata.Unicode.kerning;
 
-    doc.setFontType('bold');
+    doc.setFontType('normal');
     const splitText = doc.splitTextToSize(
         text,
-        280,
+        320,
         {widths: fontWidths, kerning: fontKerning}
     );
     doc.text(splitText, startX, startY);
@@ -18,5 +18,4 @@ export default (doc, text, startY, fontSize, lineSpacing) => {
     startY += splitText.length * doc.internal.getLineHeight();
 
     return startY;
-};
-
+}

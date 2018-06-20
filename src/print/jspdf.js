@@ -177,11 +177,10 @@ export default (printData) => {
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Text
 
-    startY = text(doc, printData.invoice.text, startY, fontSizes.NormalFontSize, lineSpacing);
+    startY = text(doc, printData.invoice.text, startY, fontSizes.NormalFontSize);
 
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Footer
-    // @todo: add footer and new pages if no space
 
     footer(doc, printData, fontSizes.SmallFontSize, lineSpacing);
 
