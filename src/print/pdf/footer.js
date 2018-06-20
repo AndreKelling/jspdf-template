@@ -17,7 +17,6 @@ export default (doc, data, fontSize, lineSpacing) => {
     startY += lineSpacing / 3;
 
     doc.setFontSize(fontSize);
-    // count startY lines
 
     //-------Contact Details---------------------
     footerItem(doc, data.addressSender, 'Contactdetails:', startX, startY, lineSpacing);
@@ -29,5 +28,4 @@ export default (doc, data, fontSize, lineSpacing) => {
 
     //-------Tax Details---------------------
     footerItem(doc, data.personalInfo.taxoffice, 'Taxnumber:', startX, startY, lineSpacing);
-};
-
+}
