@@ -7,13 +7,13 @@ export default (doc, data, startY, fontSizes, lineSpacing) => {
 
     doc.setFontSize(fontSizes.SubTitleFontSize);
 
-    startY += 55;
+    // set fix value for Y to bring title in alignment with folding marks
+    startY = 243;
     doc.text(invoiceNrTxt, startX, startY);
     doc.text(data.number, doc.getStringUnitWidth(invoiceNrTxt) * fontSizes.SubTitleFontSize + 65, startY);
     // @todo: city as single value from invoice??
     doc.text('Berlin, '+data.date, endX, startY, 'right');
 
-    // set Y before first fold mark on the paper
     startY += lineSpacing * 2;
 
     doc.setFontSize(fontSizes.TitleFontSize);
