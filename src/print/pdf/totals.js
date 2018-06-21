@@ -2,7 +2,7 @@ import newPage from "../newPage";
 
 export default (doc, invoice, startY, fontSize, lineSpacing) => {
     let startX = 57;
-    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageWidth = doc.internal.pageSize.width;
     const endX =  pageWidth - startX;
 
     const tablecol3X = 460;
