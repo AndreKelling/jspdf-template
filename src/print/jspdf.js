@@ -136,6 +136,7 @@ export default (printData) => {
     let startX = 57;
     let startY = 130; // bit more then 45mm
 
+    const pageHeight = doc.internal.pageSize.getHeight();
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageCenterX = pageWidth / 2;
     const endX =  pageWidth - startX;
@@ -223,7 +224,7 @@ export default (printData) => {
     }
 
     // <><>><><>><>><><><><><>>><><<><><><><>
-    // Graphics
+    // Logo
 
     const logoLoaded = getDataUri('/img/logo.png').then(
         logo => {
@@ -241,6 +242,22 @@ export default (printData) => {
         }
     );
 
+    // <><>><><>><>><><><><><>>><><<><><><><>
+    // Page Numbers
+
+    if (pageNr > 1) {
+        n = 0;
+        doc.setFontSize(fontSizes.SmallFontSize);
+
+        while (n < pageNr) {
+            n++;
+
+            doc.setPage(n);
+
+            doc.text(n+' / '+pageNr, pageCenterX, pageHeight - 20, 'center');
+        }
+    }
+    
     // <><>><><>><>><><><><><>>><><<><><><><>
     // PRINT
     // <><>><><>><>><><><><><>>><><<><><><><>
