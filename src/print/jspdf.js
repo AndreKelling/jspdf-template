@@ -45,7 +45,17 @@ export default (printData) => {
             'total':'6.724,00 €',
             'text':'Etiam quis quam. Nullam at arcu a est sollicitudin euismod. Nulla quis diam. Etiam neque. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut\n aliquid ex ea commodi consequatur? Fusce tellus. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus. Phasellus enim erat,\n vestibulum vel, aliquam a, posuere eu, velit. Integer vulputate sem a nibh rutrum consequat. Mauris metus. Phasellus faucibus molestie nisl. Suspendisse sagittis ultrices augue. Integer imperdiet lectus quis justo.\n' +
             '\n' +
-            'Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Fusce nibh. Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel metus. Donec vitae arcu. Sed convallis magna eu sem. Cras elementum. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Nulla non lectus sed nisl molestie malesuada. Etiam quis quam. In rutrum. Nullam sit amet magna in magna gravida vehicula. Fusce dui leo, imperdiet in, aliquam sit amet, feugiat eu, orci. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem purus in lacus. Nullam dapibus fermentum ipsum. Etiam posuere lacus quis dolor. Integer imperdiet lectus quis justo. Duis viverra diam non justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.'
+            'Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Fusce nibh. Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel metus. Donec vitae arcu. Sed convallis magna eu sem. Cras elementum. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Nulla non lectus sed nisl molestie malesuada. Etiam quis quam. In rutrum. Nullam sit amet magna in magna gravida vehicula. Fusce dui leo, imperdiet in, aliquam sit amet, feugiat eu, orci. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem purus in lacus. Nullam dapibus fermentum ipsum. Etiam posuere lacus quis dolor. Integer imperdiet lectus quis justo. Duis viverra diam non justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. vestibulum vel, aliquam a, posuere eu, velit. Integer vulputate sem a\n' +
+            'nibh rutrum consequat. Mauris metus. Phasellus faucibus molestie\n' +
+            'nisl. Suspendisse sagittis ultrices augue. Integer imperdiet lectus quis\n' +
+            'justo.\n' +
+            'Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu.\n' +
+            'Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus,\n' +
+            'nec bibendum odio risus sit amet ante. Fusce nibh. Mauris suscipit,\n' +
+            'ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis\n'+
+            'Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu.\n' +
+                'Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus,\n' +
+            'nec bibendum odio risus sit amet ante. Fusce nibh. Mauris suscipit,\n'
         },
         'items': {
             [0]: {
@@ -179,7 +189,7 @@ export default (printData) => {
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Text
 
-    startY = text(doc, printData.invoice.text, startY, fontSizes.NormalFontSize);
+    startY = text(doc, printData.invoice.text, startY, fontSizes.NormalFontSize, lineSpacing);
 
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Footer
