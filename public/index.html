@@ -6,6 +6,9 @@
     <style>
         html {
             height: 100%;
+            font-family: system-ui;
+            text-align: center;
+            color: darkblue;
         }
 
         body {
@@ -17,6 +20,8 @@
 
         button {
             padding: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
             background: transparent;
             border: .3em solid darkblue;
             border-radius: 4em;
@@ -27,12 +32,14 @@
 
         button:hover,
         button:focus {
-            color: white;
+            color: whitesmoke;
         }
     </style>
 </head>
 <body>
-    <button>Print a PDF</button>
+    <h1>Print an invoice PDF</h1>
+    <button id="short">Print short one page</button>
+    <button id="long">Print long multipage</button>
     <script src="/bundle.js"></script>
 </body>
 </html>
