@@ -122,16 +122,13 @@ export default (printData) => {
 
         n = 1;
 
-        console.log('loaded', n, pageNr);
         while (n < pageNr) {
             n++;
-            console.log('placeSvg logo');
+
             doc.setPage(n);
 
             logoLoaded = placeSvg(doc, '/img/favicon-A-2.svg', pageCenterX - 25, 25, 0.025, n);
             doc.link(pageCenterX - 25, 25, 50, 50, {url: printData.personalInfo.website});
-
-           // logoLoaded = placeSvg(doc, '/img/webandmedia-grey.svg', -22, 300, 5, n);
         }
 
         // <><>><><>><>><><><><><>>><><<><><><><>

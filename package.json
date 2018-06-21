@@ -9,6 +9,7 @@
     "webpack": "webpack-dev-server"
   },
   "dependencies": {
+    "jspdf": "^1.4.1",
     "jspdf-customfonts": "^0.0.4-rc.4",
     "jspdf-yworks": "^1.3.2",
     "svg2pdf.js": "^1.2.1",

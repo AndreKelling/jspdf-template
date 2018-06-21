@@ -41,6 +41,8 @@ export default (doc, text, startY, fontSize, lineSpacing) => {
         startY = newPage(doc, startY, neededHeight);
     }
 
+    // need to set font here again, else weirdo things are printed out
+    doc.setFont('WorkSans');
     doc.text(splitText, startX, startY);
     neededHeight = splitText.length * doc.internal.getLineHeight();
     startY += neededHeight + lineSpacing;
