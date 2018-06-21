@@ -111,7 +111,9 @@ export default (printData) => {
 
     setFont(doc);
 
+    // <><>><><>><>><><><><><>>><><<><><><><>
     // SETTINGS
+    // <><>><><>><>><><><><><>>><><<><><><><>
 
     const fontSizes = {
         TitleFontSize:14,
@@ -195,15 +197,15 @@ export default (printData) => {
 
     const foldX = 12;
     const foldMarksY = [288,411,585];
-    doc.setDrawColor(206, 218, 192);
-    doc.setLineWidth(0.5);
-
     let n = 0;
 
     while (n < pageNr) {
         n++;
 
         doc.setPage(n);
+
+        doc.setDrawColor(206, 218, 192);
+        doc.setLineWidth(0.5);
 
     foldMarksY.map(valueY => {
         doc.line(foldX, valueY, foldX + 23, valueY);
@@ -220,6 +222,7 @@ export default (printData) => {
                 n++;
                 doc.setPage(n);
                 doc.addImage(logo, 'PNG', pageCenterX - 25, 25, 50, 50);
+                doc.link(pageCenterX - 25, 25, 50, 50, {url:'https://andrekelling.de'});
             }
         }
     ).catch(

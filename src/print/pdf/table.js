@@ -52,7 +52,8 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
         );
         const heightDescription = splitDescription.length * doc.internal.getLineHeight();
 
-        // needs new page check before item output
+        // <><>><><>><>><><><><><>>><><<><><><><>
+        // new page check before item output
         startY = newPage(doc, startY, heightDescription + heightTitle);
 
         doc.setFontType('bold');
@@ -73,5 +74,4 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
     });
 
     return startY;
-};
-
+}
