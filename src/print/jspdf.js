@@ -4,7 +4,8 @@ import jsPDF from 'jspdf-yworks';
 //import jsPDF from '../jspdf.debug';
 import 'jspdf-customfonts';
 import './default_vfs';
-import placeSvg from './placeSvg';
+import svg2pdf from "svg2pdf.js";
+import fetchSvg from './fetchSvg';
 import setFont from './setFont';
 import addressSender from './pdf/addressSender';
 import addressCustomer from './pdf/addressCustomer';
@@ -32,7 +33,6 @@ export default (printData) => {
     };
     const lineSpacing = 12;
 
-    let startX = 57;
     let startY = 130; // bit more then 45mm
 
     const pageHeight = doc.internal.pageSize.height;
@@ -45,15 +45,37 @@ export default (printData) => {
 
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Background init
-    let backgroundLoaded = placeSvg(doc, '/img/webandmedia-grey.svg', -70, 250, 5.6);
-    Promise.all([backgroundLoaded]).then(() => {
+    // @todo: is there a better synchronus approach to integrate background image.
+    fetchSvg(doc, '/img/webandmedia-grey.svg').then((svg) => {
+        if (svg) {
+            doc.setPage(1);
+
+            svg2pdf(svg, doc, {
+                xOffset: -70,
+                yOffset: 250,
+                scale: 5.6
+            });
+
+
+            localStorage.setItem('bgSvg', new XMLSerializer().serializeToString(svg));
+        }
+
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Sender's address
 
         startY = addressSender(doc, printData.addressSender, startY, fontSizes.NormalFontSize, lineSpacing);
 
-        const svgLoaded = placeSvg(doc, '/img/stripes_ecks_bottom.svg', 225, 136, 0.45);
+        const addressSvgLoaded = fetchSvg(doc, '/img/stripes_ecks_bottom.svg').then((svg) => {
+            if (svg) {
+                doc.setPage(1);
 
+                svg2pdf(svg, doc, {
+                    xOffset: 225,
+                    yOffset: 136,
+                    scale: 0.45
+                });
+            }
+        });
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Customer address
 
@@ -118,18 +140,25 @@ export default (printData) => {
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Logo
 
-        let logoLoaded = placeSvg(doc, '/img/favicon-A-2.svg', pageCenterX - 25, 25, 0.025);
-
-        n = 1;
+        const logoLoaded = fetchSvg(doc, '/img/favicon-A-2.svg').then((logoSvg) => {
+            if (logoSvg) {
+                n = 0;
 
         while (n < pageNr) {
             n++;
 
             doc.setPage(n);
 
-            logoLoaded = placeSvg(doc, '/img/favicon-A-2.svg', pageCenterX - 25, 25, 0.025, n);
+                    svg2pdf(logoSvg, doc, {
+                        xOffset: pageCenterX - 25,
+                        yOffset: 25,
+                        scale: 0.025
+                    });
+
             doc.link(pageCenterX - 25, 25, 50, 50, {url: printData.personalInfo.website});
         }
+            }
+        });
 
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Page Numbers
@@ -151,7 +180,7 @@ export default (printData) => {
         // PRINT
         // <><>><><>><>><><><><><>>><><<><><><><>
 
-        Promise.all([svgLoaded, logoLoaded]).then(() => {
+        Promise.all([addressSvgLoaded, logoLoaded]).then(() => {
             doc.save("invoice.pdf");
         });
     });
