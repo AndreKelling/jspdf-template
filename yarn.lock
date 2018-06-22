@@ -173,6 +173,10 @@ acorn@^5.0.0, acorn@^5.6.2:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.1.tgz#f095829297706a7c9776958c0afc8930a9b9d9d8"
 
+"adler32cs@github:chick307/adler32cs.js":
+  version "0.0.2"
+  resolved "https://codeload.github.com/chick307/adler32cs.js/tar.gz/7fd00ffa24bf173a1eeb987ce7a21ae214eff658"
+
 ajv-keywords@^3.1.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.2.0.tgz#e86b819c602cf8821ad637413698f1dec021847a"
@@ -1330,6 +1334,10 @@ file-saver@1.3.8:
   version "1.3.8"
   resolved "https://registry.yarnpkg.com/file-saver/-/file-saver-1.3.8.tgz#e68a30c7cb044e2fb362b428469feb291c2e09d8"
 
+"filesaver.js@github:andyinabox/FileSaver.js":
+  version "1.0.0"
+  resolved "https://codeload.github.com/andyinabox/FileSaver.js/tar.gz/973b433b8fbaee9a11d53b9ae423b046742cfe32"
+
 fill-range@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-4.0.0.tgz#d544811d428f98eb06a63dc402d2403c328c38f7"
@@ -2046,6 +2054,14 @@ json5@^0.5.0:
 jspdf-customfonts@^0.0.4-rc.4:
   version "0.0.4-rc.4"
   resolved "https://registry.yarnpkg.com/jspdf-customfonts/-/jspdf-customfonts-0.0.4-rc.4.tgz#9ae8e75e13e9797ffbcb29055a93809610f1f0de"
+
+jspdf-yworks@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/jspdf-yworks/-/jspdf-yworks-1.3.2.tgz#4ac18d845438a8a062b21b6f612229688fbd5eea"
+  dependencies:
+    adler32cs "github:chick307/adler32cs.js"
+    cf-blob.js "0.0.1"
+    filesaver.js "github:andyinabox/FileSaver.js"
 
 jspdf@^1.4.1:
   version "1.4.1"
@@ -3500,6 +3516,12 @@ supports-color@^5.1.0, supports-color@^5.3.0, supports-color@^5.4.0:
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.4.0.tgz#1c6b337402c2137605efe19f10fec390f6faab54"
   dependencies:
     has-flag "^3.0.0"
+
+svg2pdf.js@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/svg2pdf.js/-/svg2pdf.js-1.2.1.tgz#9bad9124362c1673b8abf6a441245db8631b7909"
+  dependencies:
+    jspdf-yworks "^1.3.2"
 
 "symbol-tree@>= 3.1.0 < 4.0.0":
   version "3.2.2"

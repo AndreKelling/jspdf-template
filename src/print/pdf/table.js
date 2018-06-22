@@ -3,7 +3,7 @@ import newPage from '../newPage';
 export default (doc, items, startY, fontSize, lineSpacing) => {
 
     let startX = 57;
-    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageWidth = doc.internal.pageSize.width;
     const endX =  pageWidth - startX;
 
     const tablecol2X = 386;
@@ -32,28 +32,23 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
 
     items.map(item => {
 
-        // @todo: add this workaround for missing `widths` and `kerning` values in splitTextToSize function, because used custom font ist not really nice unicode conform
-        const fontWidths = doc.internal.getFont('WorkSans', 'normal').metadata.subset.unicodes;
-        const fontKerning = doc.internal.getFont('times', 'normal').metadata.Unicode.kerning;
-
         doc.setFontType('bold');
         const splitTitle = doc.splitTextToSize(
             item.title,
-            tablecol2X - startX - lineSpacing * 1.5,
-            {widths: fontWidths, kerning: fontKerning}
+            tablecol2X - startX - lineSpacing * 1.5
         );
         const heightTitle = splitTitle.length * doc.internal.getLineHeight();
 
         doc.setFontType('normal');
         const splitDescription = doc.splitTextToSize(
             item.description,
-            tablecol2X - startX - lineSpacing * 1.5,
-            {widths: fontWidths, kerning: fontKerning}
+            tablecol2X - startX - lineSpacing * 1.5
         );
         const heightDescription = splitDescription.length * doc.internal.getLineHeight();
 
         // <><>><><>><>><><><><><>>><><<><><><><>
         // new page check before item output
+        // @todo: display table header on a new page
         startY = newPage(doc, startY, heightDescription + heightTitle);
 
         doc.setFontType('bold');

@@ -7,20 +7,15 @@ export default (doc, text, startY, fontSize, lineSpacing) => {
 
     startY += lineSpacing * 4;
 
-    // @todo: add this workaround for missing `widths` and `kerning` values in splitTextToSize function, because used custom font ist not really nice unicode conform
-    const fontWidths = doc.internal.getFont('WorkSans', 'normal').metadata.subset.unicodes;
-    const fontKerning = doc.internal.getFont('times', 'normal').metadata.Unicode.kerning;
-
     doc.setFontType('normal');
     let splitText = doc.splitTextToSize(
         text,
-        320,
-        {widths: fontWidths, kerning: fontKerning}
+        320
     );
 
     // <><>><><>><>><><><><><>>><><<><><><><>
     // new page check before text output
-    const pageHeight = doc.internal.pageSize.getHeight();
+    const pageHeight = doc.internal.pageSize.height;
     const endY = pageHeight - 120; // minus footerHeight
     const neededSpacing = lineSpacing * 4;
     let neededHeight = splitText.length * doc.internal.getLineHeight();
@@ -46,6 +41,8 @@ export default (doc, text, startY, fontSize, lineSpacing) => {
         startY = newPage(doc, startY, neededHeight);
     }
 
+    // need to set font here again, else weirdo things are printed out
+    doc.setFont('WorkSans');
     doc.text(splitText, startX, startY);
     neededHeight = splitText.length * doc.internal.getLineHeight();
     startY += neededHeight + lineSpacing;
