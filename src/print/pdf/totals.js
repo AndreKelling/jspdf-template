@@ -12,7 +12,7 @@ export default (doc, invoice, startY, fontSize, lineSpacing) => {
     const neededHeight = lineSpacing * 2 + lineSpacing;
     startY = newPage(doc, startY, neededHeight);
 
-    doc.setDrawColor(206, 218, 192);
+    doc.setDrawColor(157, 183, 128);
     doc.setLineWidth(0.5);
     doc.line(startX, startY, endX, startY);
 

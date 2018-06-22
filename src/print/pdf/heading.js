@@ -28,7 +28,7 @@ export default (doc, data, startY, fontSizes, lineSpacing) => {
     doc.text("Invoice for", startX, startY += lineSpacing + 2);
     doc.text(data.subject, startX, startY += lineSpacing * 2);
 
-    doc.setDrawColor(206, 218, 192);
+    doc.setDrawColor(157, 183, 128);
     doc.setLineWidth(0.5);
     startY += lineSpacing;
     doc.line(startX, startY, endX, startY);

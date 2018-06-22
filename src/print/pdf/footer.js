@@ -10,7 +10,7 @@ export default (doc, data, fontSize, lineSpacing) => {
     const endX =  pageWidth - startX;
     const thirdX = (pageWidth - startX * 2) / 3;
 
-    doc.setDrawColor(206, 218, 192);
+    doc.setDrawColor(157, 183, 128);
     doc.setLineWidth(0.5);
     doc.line(startX, startY, endX, startY);
     startY += lineSpacing / 3;

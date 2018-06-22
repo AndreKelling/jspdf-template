@@ -145,7 +145,6 @@ const longPrintData = {
         }
     }
 };
-
 const longestPrintData = {
     'addressSender': {
         'person':'André Kelling',

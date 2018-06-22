@@ -129,7 +129,7 @@ export default (printData) => {
 
             doc.setPage(n);
 
-            doc.setDrawColor(206, 218, 192);
+            doc.setDrawColor(157, 183, 128);
             doc.setLineWidth(0.5);
 
             foldMarksY.map(valueY => {

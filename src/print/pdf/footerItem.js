@@ -16,7 +16,7 @@ export default (doc, data, headline, startX, startY, lineSpacing) => {
         }
     });
 
-    doc.setDrawColor(206, 218, 192);
+    doc.setDrawColor(157, 183, 128);
     doc.setLineWidth(1);
     doc.line(startX + 1, startY + padding, startX + 1, tempY + padding/3);
 }
