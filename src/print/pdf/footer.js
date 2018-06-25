@@ -18,13 +18,13 @@ export default (doc, data, fontSize, lineSpacing) => {
     doc.setFontSize(fontSize);
 
     //-------Contact Details---------------------
-    footerItem(doc, data.addressSender, 'Contactdetails:', startX, startY, lineSpacing);
+    footerItem(doc, data.addressSender, data.label.contact, startX, startY, lineSpacing);
     startX += thirdX;
 
     //-------Bank Details---------------------
-    footerItem(doc, data.personalInfo.bank, 'Bankaccount:', startX, startY, lineSpacing);
+    footerItem(doc, data.personalInfo.bank, data.label.bank, startX, startY, lineSpacing);
     startX += thirdX;
 
     //-------Tax Details---------------------
-    footerItem(doc, data.personalInfo.taxoffice, 'Taxnumber:', startX, startY, lineSpacing);
+    footerItem(doc, data.personalInfo.taxoffice, data.label.taxinfo, startX, startY, lineSpacing);
 }

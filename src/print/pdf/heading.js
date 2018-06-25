@@ -1,6 +1,6 @@
 export default (doc, data, startY, fontSizes, lineSpacing) => {
 
-    const invoiceNrTxt = "INVOICE NO: ";
+    const invoiceNrTxt = data.label.invoicenumber;
     let startX = 57;
     const pageWidth = doc.internal.pageSize.width;
     const endX =  pageWidth - startX;
@@ -18,19 +18,18 @@ export default (doc, data, startY, fontSizes, lineSpacing) => {
     doc.setFont('arial');
     startX += doc.getStringUnitWidth(invoiceNrTxt) * fontSizes.SubTitleFontSize;
     doc.setFont('WorkSans');
-    doc.text(data.number, startX, startY);
+    doc.text(data.invoice.number, startX, startY);
 
     doc.setFontType('normal');
-    // @todo: city as single value from invoice??
-    const location = data.location ? data.location + ', ' : '';
-    doc.text(location + data.date, endX, startY, 'right');
+    const location = data.invoice.location ? data.invoice.location + ', ' : '';
+    doc.text(location + data.invoice.date, endX, startY, 'right');
 
     startY += lineSpacing * 2;
     startX = 57;
 
     doc.setFontSize(fontSizes.TitleFontSize);
-    doc.text("Invoice for", startX, startY += lineSpacing + 2);
-    doc.text(data.subject, startX, startY += lineSpacing * 2);
+    doc.text(data.label.invoice, startX, startY += lineSpacing + 2);
+    doc.text(data.invoice.subject, startX, startY += lineSpacing * 2);
 
     doc.setDrawColor(157, 183, 128);
     doc.setLineWidth(0.5);

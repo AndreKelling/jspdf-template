@@ -89,17 +89,17 @@ export default (printData) => {
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Invoicenumber, -date and subject
 
-        startY = heading(doc, printData.invoice, startY, fontSizes, lineSpacing);
+        startY = heading(doc, printData, startY, fontSizes, lineSpacing);
 
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Table with items
 
-        startY = table(doc, printData.items, startY, fontSizes.NormalFontSize, lineSpacing);
+        startY = table(doc, printData, startY, fontSizes.NormalFontSize, lineSpacing);
 
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Totals
 
-        startY = totals(doc, printData.invoice, startY, fontSizes.NormalFontSize, lineSpacing);
+        startY = totals(doc, printData, startY, fontSizes.NormalFontSize, lineSpacing);
 
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Text
