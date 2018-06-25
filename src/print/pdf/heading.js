@@ -5,11 +5,14 @@ export default (doc, data, startY, fontSizes, lineSpacing) => {
     const pageWidth = doc.internal.pageSize.width;
     const endX =  pageWidth - startX;
 
+    doc.setFontType('normal');
     doc.setFontSize(fontSizes.SubTitleFontSize);
 
     // set fix value for Y to bring title in alignment with folding marks
     startY = 243;
     doc.text(invoiceNrTxt, startX, startY);
+
+    doc.setFontType('bold');
 
     // @todo: font replacement for good width calculation. because else not working with my custom font :(
     doc.setFont('arial');
@@ -17,9 +20,10 @@ export default (doc, data, startY, fontSizes, lineSpacing) => {
     doc.setFont('WorkSans');
     doc.text(data.number, startX, startY);
 
-
+    doc.setFontType('normal');
     // @todo: city as single value from invoice??
-    doc.text('Berlin, '+data.date, endX, startY, 'right');
+    const location = data.location ? data.location + ', ' : '';
+    doc.text(location + data.date, endX, startY, 'right');
 
     startY += lineSpacing * 2;
     startX = 57;
