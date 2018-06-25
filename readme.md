@@ -17,6 +17,11 @@ For a bit simpler usage i would suggest to refer back to [Version 1.0](https://g
 
 you might need to have webpack installed too.
 
+## Create custom Font file
+
+1. Copy your fonts into the **fonts** subdirectory.
+2. Run `node makeFonts.js` to create a new print/default_vfs.js.   
+
 ## Description
 
 Print "Templates" or Components are hidden in `src/print/pdf`.
