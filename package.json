@@ -1,8 +1,9 @@
 {
-  "name": "jspdf",
-  "version": "1.0.0",
+  "name": "jspdf-template",
+  "version": "2.1.0",
   "main": "app.js",
   "author": "André Kelling",
+  "repository": "https://github.com/AndreKelling/jspdf-template",
   "license": "MIT",
   "scripts": {
     "start": "webpack",
