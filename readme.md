@@ -2,9 +2,9 @@
 
 This a styled invoice Template [jsPDF](https://github.com/MrRio/jsPDF) in a simple _ES6 webpack_ setup.
 
-Included custom fonts with this [jsPDF CustomFont support plugin](https://github.com/sphilee/jsPDF-CustomFonts-support). Even it's said that this functionality is already integrated in jsPDF. It is now working with my used custom font.
+Includes custom fonts with this [jsPDF CustomFont support plugin](https://github.com/sphilee/jsPDF-CustomFonts-support). Even it's said that this functionality is already integrated in jsPDF. It is now working with my used custom font.
 
-Included [svg2pdf](https://github.com/yWorks/svg2pdf.js) for better SVG support. Which is also the reason why [jsPDF-yworks](https://github.com/yWorks/jsPDF) package had to replace the original one.
+Includes [svg2pdf](https://github.com/yWorks/svg2pdf.js) for better SVG support. Which is also the reason why [jsPDF-yworks](https://github.com/yWorks/jsPDF) package had to replace the original one.
 
 ## Releases
 
@@ -15,8 +15,6 @@ For a bit simpler usage i would suggest to refer back to [Version 1.0](https://g
 1. `yarn install`
 2. `yarn run webpack`
 
-you might need to have webpack installed too.
-
 ## Create custom Font file
 
 1. Copy your fonts into the **fonts** subdirectory.
@@ -26,7 +24,7 @@ you might need to have webpack installed too.
 
 Print "Templates" or Components are hidden in `src/print/pdf`.
 
-While `src/print/jspdf.js` serves the main start for the printing functionality.
+While `src/print/index.js` serves the main start for the printing functionality.
 
 Some functional tools are placed in `src/print`.
 

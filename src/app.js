@@ -1,4 +1,4 @@
-import printPDF from './print/jspdf';
+import printPDF from './print';
 
 const shortPrintData = {
     'addressSender': {
