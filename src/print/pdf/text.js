@@ -29,11 +29,11 @@ export default (doc, text, startY, fontSize, lineSpacing) => {
     let textStart;
 
     while (endY - startY - neededHeight < 0 && splitText.length > spaceForLines) {
-
         spaceForLines = Math.floor((endY - startY) / doc.internal.getLineHeight());
         neededHeight = splitText.length * doc.internal.getLineHeight();
 
         textStart = splitText.slice(0,spaceForLines);
+        doc.setFont('WorkSans'); // set font here again, else weirdo things are printed out
         doc.text(textStart, startX, startY);
 
         splitText = splitText.slice(spaceForLines);
@@ -41,7 +41,7 @@ export default (doc, text, startY, fontSize, lineSpacing) => {
         startY = newPage(doc, startY, neededHeight);
     }
 
-    // need to set font here again, else weirdo things are printed out
+    // set font here again, else weirdo things are printed out
     doc.setFont('WorkSans');
     doc.text(splitText, startX, startY);
     neededHeight = splitText.length * doc.internal.getLineHeight();

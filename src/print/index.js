@@ -16,7 +16,6 @@ import text from './pdf/text';
 import footer from './pdf/footer';
 
 export default (printData) => {
-//@todo: text refacor to index.js
     const doc = new jsPDF('p', 'pt');
 
     setFont(doc);
