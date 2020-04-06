@@ -14,10 +14,7 @@ export default (doc, data, startY, fontSizes, lineSpacing) => {
 
     doc.setFontType('bold');
 
-    // @todo: font replacement for good width calculation. because else not working with my custom font :(
-    doc.setFont('arial');
     startX += doc.getStringUnitWidth(invoiceNrTxt) * fontSizes.SubTitleFontSize;
-    doc.setFont('WorkSans');
     doc.text(data.invoice.number, startX, startY);
 
     doc.setFontType('normal');

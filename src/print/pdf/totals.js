@@ -25,10 +25,7 @@ export default (doc, printData, startY, fontSize, lineSpacing) => {
     doc.setFontType('bold');
     doc.text(printData.invoice.total, endX, startY, 'right');
 
-    // @todo: font replacement for good width calculation. because else not working with my custom font :(
-    doc.setFont('arial');
     startX = endX - doc.getStringUnitWidth(printData.invoice.total) * fontSize - 5;
-    doc.setFont('WorkSans');
     doc.setLineWidth(0.5);
     startY += 4;
     doc.line(startX - 1, startY, endX + 1, startY);
