@@ -1,7 +1,5 @@
-// import jsPDF from 'jspdf';
 //import jsPDF from '../../node_modules/jspdf-yworks/dist/jspdf.debug';
 import jsPDF from 'jspdf-yworks';
-//import jsPDF from '../jspdf.debug';
 import './fonts/WorkSans-normal';
 import './fonts/WorkSans-bold';
 import svg2pdf from 'svg2pdf.js';

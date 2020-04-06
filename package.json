@@ -1,6 +1,6 @@
 {
   "name": "jspdf-template",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "main": "app.js",
   "author": "André Kelling",
   "repository": "https://github.com/AndreKelling/jspdf-template",
@@ -10,7 +10,6 @@
     "webpack": "webpack-dev-server"
   },
   "dependencies": {
-    "jspdf": "^1.5.3",
     "jspdf-yworks": "^2.1.1",
     "svg2pdf.js": "^1.5.0",
     "webpack": "^4.42.1",
