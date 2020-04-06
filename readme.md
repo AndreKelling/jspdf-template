@@ -2,7 +2,7 @@
 
 This a styled invoice Template [jsPDF](https://github.com/MrRio/jsPDF) in a simple _ES6 webpack_ setup.
 
-Includes custom fonts with this [jsPDF CustomFont support plugin](https://github.com/sphilee/jsPDF-CustomFonts-support). Even it's said that this functionality is already integrated in jsPDF. It is now working with my used custom font.
+I do use a custom font here. Which is prepared as base64 code like following: https://github.com/MrRio/jsPDF/#use-of-utf-8--ttf
 
 Includes [svg2pdf](https://github.com/yWorks/svg2pdf.js) for better SVG support. Which is also the reason why [jsPDF-yworks](https://github.com/yWorks/jsPDF) package had to replace the original one.
 
@@ -15,10 +15,11 @@ For a bit simpler usage i would suggest to refer back to [Version 1.0](https://g
 1. `npm install`
 2. `npm run webpack`
 
-## Create custom Font file
+## Custom Font file
 
-1. Copy your fonts into the **fonts** subdirectory.
-2. Run `node makeFonts.js` to create a new print/default_vfs.js.   
+1. My custom fonts are laying as .ttf font-files in `src/fonts` subdirectory.
+2. prepared JS script with the font's base64 code are in `src/print/fonts`
+3. they got a `import jsPDF from 'jspdf-yworks';` added at the very top
 
 ## Description
 
