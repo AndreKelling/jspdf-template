@@ -43,7 +43,7 @@ export default (printData) => {
 
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Background init
-    // @todo: is there a better synchronus approach to integrate background image.
+    // need to print the background before other elements get printed on
     fetchSvg(doc, '/img/background.svg').then((svg) => {
         if (svg) {
             doc.setPage(1);

@@ -14,8 +14,7 @@ export default (doc, startY, neededHeight) => {
             const svg = svgText.getElementsByTagName('svg')[0];
             svg2pdf(svg, doc, {
                 xOffset: -70,
-                yOffset: 250,
-                scale: 5.6
+                yOffset: 250
             });
         }
 
