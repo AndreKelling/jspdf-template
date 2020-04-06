@@ -44,14 +44,13 @@ export default (printData) => {
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Background init
     // @todo: is there a better synchronus approach to integrate background image.
-    fetchSvg(doc, '/img/webandmedia-grey.svg').then((svg) => {
+    fetchSvg(doc, '/img/background.svg').then((svg) => {
         if (svg) {
             doc.setPage(1);
 
             svg2pdf(svg, doc, {
                 xOffset: -70,
-                yOffset: 250,
-                scale: 5.6
+                yOffset: 250
             });
 
 
@@ -63,14 +62,14 @@ export default (printData) => {
 
         startY = addressSender(doc, printData.addressSender, startY, fontSizes.NormalFontSize, lineSpacing);
 
-        const addressSvgLoaded = fetchSvg(doc, '/img/stripes_ecks_bottom.svg').then((svg) => {
+        const addressSvgLoaded = fetchSvg(doc, '/img/address-bar.svg').then((svg) => {
             if (svg) {
                 doc.setPage(1);
 
                 svg2pdf(svg, doc, {
                     xOffset: 225,
                     yOffset: 136,
-                    scale: 0.45
+                    scale: 0.45 // scaling for finer details
                 });
             }
         });
@@ -138,23 +137,22 @@ export default (printData) => {
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Logo
 
-        const logoLoaded = fetchSvg(doc, '/img/favicon-A-2.svg').then((logoSvg) => {
+        const logoLoaded = fetchSvg(doc, '/img/logo.svg').then((logoSvg) => {
             if (logoSvg) {
                 n = 0;
 
-        while (n < pageNr) {
-            n++;
+                while (n < pageNr) {
+                    n++;
 
-            doc.setPage(n);
+                    doc.setPage(n);
 
                     svg2pdf(logoSvg, doc, {
-                        xOffset: pageCenterX - 25,
-                        yOffset: 25,
-                        scale: 0.025
+                        xOffset: pageCenterX - 20,
+                        yOffset: 25
                     });
 
-            doc.link(pageCenterX - 25, 25, 50, 50, {url: printData.personalInfo.website});
-        }
+                    doc.link(pageCenterX - 25, 25, 50, 50, {url: printData.personalInfo.website});
+                }
             }
         });
 

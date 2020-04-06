@@ -15,7 +15,7 @@ For a bit simpler usage i would suggest to refer back to [Version 1.0](https://g
 1. `npm install`
 2. `npm run webpack`
 
-## Custom Font file
+## Custom-Font file
 
 1. My custom fonts are laying as .ttf font-files in `src/fonts` subdirectory.
 2. prepared JS script with the font's base64 code are in `src/print/fonts`
@@ -29,8 +29,16 @@ While `src/print/index.js` serves the main start for the printing functionality.
 
 Some functional tools are placed in `src/print`.
 
+### Image sizes
+
+Images need to be SVG in here!
+
+* Logo Size: width="40" height="49"
+* Address-bar: width="668" height="56", which is scaled down to keep details
+* Background: width="733" height="528", which is centralised and hangs a bit over the edges
+
 ## Issues
 
-* the yworks fork of jsPDF is used for their proper SVG integration
+* the yworks fork of jsPDF is used for their proper SVG integration. Still SVG should be SVGO (eg. https://jakearchibald.github.io/svgomg/ or configure a SVGO export in sketch [sketch SVGO export plugin](https://www.sketch.com/extensions/plugins/svgo-compressor/) like this https://github.com/sketch-hq/svgo-compressor/issues/20#issuecomment-411478737) optimized. So some attributes not working for rendering are removed.
 * custom font `work sans` isn't working in any case. sometimes i do switch font temporally for some calculations. e.g. for functions `getStringUnitWidth()` or `splitTextToSize()`
 * currently using localStorage to save the background graphic globally for synchronous usage. Might not be the best idea.
