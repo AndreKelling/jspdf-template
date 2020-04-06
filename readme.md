@@ -12,8 +12,8 @@ For a bit simpler usage i would suggest to refer back to [Version 1.0](https://g
 
 ## Setup dev env
 
-1. `yarn install`
-2. `yarn run webpack`
+1. `npm install`
+2. `npm run webpack`
 
 ## Create custom Font file
 
