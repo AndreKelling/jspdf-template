@@ -12,7 +12,7 @@ export default (doc, address, startY, fontSize, lineSpacing) => {
     doc.setFontSize(fontSize);
 
     address = Object.values(address);
-    // @todo: slice arrays while knowing they wont change it's content
+    // @todo: more dynamic slice arrays
     const addressStart = address.slice(0,3);
     const addressEnd = address.slice(3);
 

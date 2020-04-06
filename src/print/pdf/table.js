@@ -1,6 +1,6 @@
 import newPage from '../newPage';
 
-export default (doc, items, startY, fontSize, lineSpacing) => {
+export default (doc, printData, startY, fontSize, lineSpacing) => {
 
     let startX = 57;
     const pageWidth = doc.internal.pageSize.width;
@@ -15,10 +15,10 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
     //-------Table Header---------------------
     startY += lineSpacing * 1.5;
 
-    doc.text("Items", startX, startY);
-    doc.text("Qty", tablecol2X, startY, 'right');
-    doc.text("Price", tablecol3X, startY, 'right');
-    doc.text("Total", endX, startY, 'right');
+    doc.text(printData.label.tableItems, startX, startY);
+    doc.text(printData.label.tableQty, tablecol2X, startY, 'right');
+    doc.text(printData.label.tableSinglePrice, tablecol3X, startY, 'right');
+    doc.text(printData.label.tableSingleTotal, endX, startY, 'right');
 
     startY += lineSpacing;
 
@@ -28,7 +28,7 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
 
     //-------Table Body---------------------
 
-    items = Object.values(items);
+    const items = Object.values(printData.items);
 
     items.map(item => {
 
@@ -48,7 +48,7 @@ export default (doc, items, startY, fontSize, lineSpacing) => {
 
         // <><>><><>><>><><><><><>>><><<><><><><>
         // new page check before item output
-        // @todo: display table header on a new page
+        // @todo: display table header at start of a new page
         startY = newPage(doc, startY, heightDescription + heightTitle);
 
         doc.setFontType('bold');

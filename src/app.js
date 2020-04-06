@@ -26,6 +26,18 @@ const shortPrintData = {
             'number':'St-Nr 12/123/12345'
         }
     },
+    'label': {
+        'invoicenumber':'Invoice No.',
+        'invoice':'Invoice for',
+        'tableItems':'Items',
+        'tableQty':'Qty',
+        'tableSinglePrice':'Price',
+        'tableSingleTotal':'Total',
+        'totalGrand':'Grand Total',
+        'contact':'Kontaktdetails',
+        'bank':'Bankverbindung',
+        'taxinfo':'Steuernummer',
+    },
     'invoice': {
         'number':'2018-15738',
         'date':'28.06.2018',
@@ -76,8 +88,21 @@ const longPrintData = {
             'number':'St-Nr 12/123/12345'
         }
     },
+    'label': {
+        'invoicenumber':'Invoice No.',
+        'invoice':'Invoice for',
+        'tableItems':'Items',
+        'tableQty':'Qty',
+        'tableSinglePrice':'Price',
+        'tableSingleTotal':'Total',
+        'totalGrand':'Grand Total',
+        'contact':'Contactdetails:',
+        'bank':'Bankaccount:',
+        'taxinfo':'Taxnumber:',
+    },
     'invoice': {
         'number':'2018-15738',
+        'location':'Berlin',
         'date':'28.06.2018',
         'subject':'https://andrekelling.de',
         'total':'6.724,00 €',
@@ -171,8 +196,21 @@ const longestPrintData = {
             'number':'St-Nr 12/123/12345'
         }
     },
+    'label': {
+        'invoicenumber':'Invoice No.',
+        'invoice':'Invoice for',
+        'tableItems':'Items',
+        'tableQty':'Qty',
+        'tableSinglePrice':'Price',
+        'tableSingleTotal':'Total',
+        'totalGrand':'Grand Total',
+        'contact':'Contactdetails:',
+        'bank':'Bankaccount:',
+        'taxinfo':'Taxnumber:',
+    },
     'invoice': {
         'number':'2018-15738',
+        'location':'Berlin',
         'date':'28.06.2018',
         'subject':'https://andrekelling.de',
         'total':'888.556.724,00 €',
