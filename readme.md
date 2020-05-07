@@ -4,6 +4,8 @@ This a styled invoice Template [jsPDF](https://github.com/MrRio/jsPDF) in a simp
 
 Includes [svg2pdf](https://github.com/yWorks/svg2pdf.js) for better SVG support. Which is also the reason why [jsPDF-yworks](https://github.com/yWorks/jsPDF) package had to replace the original one.
 
+Here there is a [demo](https://andrekelling.github.io/jspdf-template/).
+
 ## Releases
 
 For a bit simpler usage i would suggest to refer back to [Version 1.0](https://github.com/AndreKelling/jspdf-template/releases/tag/1.0) of this development. Which isn't using jspdf-yworks package and integrates graphics as simple base64.
