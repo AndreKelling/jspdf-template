@@ -5,7 +5,7 @@ export default (doc, printData, pageNr) => {
     const pageWidth = doc.internal.pageSize.width;
     const pageCenterX = pageWidth / 2;
 
-    return fetchSvg(doc, '/img/logo.svg').then((logoSvg) => {
+    return fetchSvg(doc, 'img/logo.svg').then((logoSvg) => {
         if (logoSvg) {
             let n = 0;
 

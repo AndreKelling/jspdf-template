@@ -46,7 +46,7 @@ export default (printData) => {
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Background init
     // need to print the background before other elements get printed on
-    fetchSvg(doc, '/img/background.svg').then((svg) => {
+    fetchSvg(doc, 'img/background.svg').then((svg) => {
         if (svg) {
             doc.setPage(1);
 
@@ -64,7 +64,7 @@ export default (printData) => {
 
         startY = addressSender(doc, printData.addressSender, startY, fontSizes.NormalFontSize, lineSpacing);
 
-        const addressSvgLoaded = fetchSvg(doc, '/img/address-bar.svg').then((svg) => {
+        const addressSvgLoaded = fetchSvg(doc, 'img/address-bar.svg').then((svg) => {
             if (svg) {
                 doc.setPage(1);
 
