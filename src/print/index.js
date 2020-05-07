@@ -11,6 +11,7 @@ import table from './pdf/table';
 import totals from './pdf/totals';
 import text from './pdf/text';
 import footer from './pdf/footer';
+import logo from './pdf/logo';
 
 export default (printData) => {
     addFontNormal();
@@ -138,24 +139,7 @@ export default (printData) => {
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Logo
 
-        const logoLoaded = fetchSvg(doc, '/img/logo.svg').then((logoSvg) => {
-            if (logoSvg) {
-                n = 0;
-
-                while (n < pageNr) {
-                    n++;
-
-                    doc.setPage(n);
-
-                    svg2pdf(logoSvg, doc, {
-                        xOffset: pageCenterX - 20,
-                        yOffset: 25
-                    });
-
-                    doc.link(pageCenterX - 25, 25, 50, 50, {url: printData.personalInfo.website});
-                }
-            }
-        });
+        const logoLoaded = logo(doc, printData, pageNr);
 
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Page Numbers
