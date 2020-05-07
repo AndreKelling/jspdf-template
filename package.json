@@ -1,8 +1,9 @@
 {
   "name": "jspdf-template",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "main": "app.js",
   "author": "André Kelling",
+  "description": "Invoice template and setup for jsPDF usage in ES6.",
   "repository": "https://github.com/AndreKelling/jspdf-template",
   "license": "MIT",
   "scripts": {
@@ -12,8 +13,8 @@
   "dependencies": {
     "jspdf-yworks": "^2.1.1",
     "svg2pdf.js": "^1.5.0",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.0.7",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   }
 }
