@@ -5,11 +5,11 @@ export default (doc, data, headline, startX, startY, lineSpacing) => {
 
     const dataArr = Object.values(data);
 
-    doc.setFontType('bold');
+    doc.setFont(doc.vars.fontFamily, doc.vars.fontWeightBold);
     doc.text(headline, startX + padding, tempY += lineSpacing);
     tempY += lineSpacing;
 
-    doc.setFontType('normal');
+    doc.setFont(doc.vars.fontFamily, doc.vars.fontWeightNormal);
     dataArr.map(text => {
         if (text) {
             doc.text(text, startX + padding, tempY += lineSpacing);

@@ -5,19 +5,19 @@ export default (doc, data, startY, fontSizes, lineSpacing) => {
     const pageWidth = doc.internal.pageSize.width;
     const endX =  pageWidth - startX;
 
-    doc.setFontType('normal');
+    doc.setFont(doc.vars.fontFamily, doc.vars.fontWeightNormal);
     doc.setFontSize(fontSizes.SubTitleFontSize);
 
     // set fix value for Y to bring title in alignment with folding marks
     startY = 243;
     doc.text(invoiceNrTxt, startX, startY);
 
-    doc.setFontType('bold');
+    doc.setFont(doc.vars.fontFamily, doc.vars.fontWeightBold);
 
     startX += doc.getStringUnitWidth(invoiceNrTxt) * fontSizes.SubTitleFontSize;
     doc.text(data.invoice.number, startX, startY);
 
-    doc.setFontType('normal');
+    doc.setFont(doc.vars.fontFamily, doc.vars.fontWeightNormal);
     const location = data.invoice.location ? data.invoice.location + ', ' : '';
     doc.text(location + data.invoice.date, endX, startY, 'right');
 
