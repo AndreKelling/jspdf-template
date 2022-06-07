@@ -10,7 +10,7 @@ const basePrintData = {
     },
     'address': {
         'company':'Johnlands',
-        'person':'John Jonaldo',
+        'person':'Jona Jonaldo',
         'street':'Jonestreet 123',
         'city':'12345 Jenese Joplin',
     },

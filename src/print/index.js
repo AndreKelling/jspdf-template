@@ -1,25 +1,29 @@
 //import jsPDF from '../../node_modules/jspdf-yworks/dist/jspdf.debug';
-import jsPDF from 'jspdf-yworks';
+import jsPDF from 'jspdf';
 import addFontNormal from '../fonts/WorkSans-normal';
 import addFontBold from '../fonts/WorkSans-bold';
-import svg2pdf from 'svg2pdf.js';
-import fetchSvg from './fetchSvg';
-import addressSender from './pdf/addressSender';
-import addressCustomer from './pdf/addressCustomer';
-import heading from './pdf/heading';
-import table from './pdf/table';
-import totals from './pdf/totals';
-import text from './pdf/text';
-import footer from './pdf/footer';
-import logo from './pdf/logo';
+import 'svg2pdf.js';
+import fetchSvg from './utils/fetchSvg';
+import addressSender from './partials/addressSender';
+import addressCustomer from './partials/addressCustomer';
+import heading from './partials/heading';
+import table from './partials/table';
+import totals from './partials/totals';
+import text from './partials/text';
+import footer from './partials/footer';
+import logo from './partials/logo';
 
 export default (printData) => {
     addFontNormal();
     addFontBold();
 
     const doc = new jsPDF('p', 'pt');
+    doc.vars = {};
+    doc.vars.fontFamily = 'WorkSans';
+    doc.vars.fontWeightBold = 'bold';
+    doc.vars.fontWeightNormal = 'normal';
 
-    doc.setFont('WorkSans');
+    doc.setFont(doc.vars.fontFamily);
 
     // <><>><><>><>><><><><><>>><><<><><><><>
     // SETTINGS
@@ -46,17 +50,17 @@ export default (printData) => {
     // <><>><><>><>><><><><><>>><><<><><><><>
     // Background init
     // need to print the background before other elements get printed on
-    fetchSvg(doc, 'img/background.svg').then((svg) => {
+    fetchSvg('img/background.svg').then(async ({svg, width}) => {
         if (svg) {
             doc.setPage(1);
 
-            svg2pdf(svg, doc, {
-                xOffset: -70,
-                yOffset: 250
+            doc.vars.bgImageWidth = width;
+            doc.vars.bgImage = new XMLSerializer().serializeToString(svg);
+
+            await doc.svg(svg, {
+                x: pageCenterX - width / 2,
+                y: 250
             });
-
-
-            localStorage.setItem('bgSvg', new XMLSerializer().serializeToString(svg));
         }
 
         // <><>><><>><>><><><><><>>><><<><><><><>
@@ -64,16 +68,18 @@ export default (printData) => {
 
         startY = addressSender(doc, printData.addressSender, startY, fontSizes.NormalFontSize, lineSpacing);
 
-        const addressSvgLoaded = fetchSvg(doc, 'img/address-bar.svg').then((svg) => {
-            if (svg) {
-                doc.setPage(1);
+        const addressSvgLoaded = fetchSvg('img/address-bar.svg').then(({svg, width, height}) => {
+            doc.setPage(1);
 
-                svg2pdf(svg, doc, {
-                    xOffset: 225,
-                    yOffset: 136,
-                    scale: 0.45 // scaling for finer details
-                });
-            }
+            const xOffset = 225;
+			const scale = 0.45; // scaling for finer details
+
+            doc.svg(svg, {
+                x: xOffset,
+                y: 136,
+				width: width * scale,
+				height: height * scale
+            });
         });
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Customer address
@@ -93,17 +99,17 @@ export default (printData) => {
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Table with items
 
-        startY = table(doc, printData, startY, fontSizes.NormalFontSize, lineSpacing);
+        startY = await table(doc, printData, startY, fontSizes.NormalFontSize, lineSpacing);
 
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Totals
 
-        startY = totals(doc, printData, startY, fontSizes.NormalFontSize, lineSpacing);
+        startY = await totals(doc, printData, startY, fontSizes.NormalFontSize, lineSpacing);
 
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Text
 
-        startY = text(doc, printData.invoice.text, startY, fontSizes.NormalFontSize, lineSpacing);
+        startY = await text(doc, printData.invoice.text, startY, fontSizes.NormalFontSize, lineSpacing);
 
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Footer
