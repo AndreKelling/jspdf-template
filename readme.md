@@ -12,7 +12,7 @@ Here there is a [demo](https://andrekelling.github.io/jspdf-template/).
 
 ## Build
 
-For demonstration a docs [github page](https://andrekelling.github.io/jspdf-template/) is build.
+For demonstration a docs [GitHub page](https://andrekelling.github.io/jspdf-template/) is build.
 
 1. `npm run build`
 
@@ -45,5 +45,5 @@ Images need to be SVG in here!
 
 ## Issues
 
-* SVG should be SVGO (eg. https://jakearchibald.github.io/svgomg/ or configure a SVGO export in sketch [sketch SVGO export plugin](https://www.sketch.com/extensions/plugins/svgo-compressor/) like this https://github.com/sketch-hq/svgo-compressor/issues/20#issuecomment-411478737) optimized. So some attributes not working for rendering are removed.
+* SVG should be SVGO (e.g. https://jakearchibald.github.io/svgomg/ or configure a SVGO export in sketch [sketch SVGO export plugin](https://www.sketch.com/extensions/plugins/svgo-compressor/) like this https://github.com/sketch-hq/svgo-compressor/issues/20#issuecomment-411478737) optimized. So some attributes not working for rendering are removed.
 * currently using localStorage to save the background graphic globally for synchronous usage. Might not be the best idea.

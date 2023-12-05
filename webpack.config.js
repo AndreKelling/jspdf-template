@@ -9,7 +9,7 @@ module.exports = (env, argv) => {
 	return {
 		entry: './src/app.js',
 		output: {
-			path: path.join(__dirname, 'docs'),
+			path: path.join(__dirname, 'docs/dist'),
 			filename: 'bundle.js',
 		},
 		devServer: {
