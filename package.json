@@ -7,7 +7,7 @@
   "repository": "https://github.com/AndreKelling/jspdf-template",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode=development",
+    "build": "webpack --mode=production",
     "dev": "webpack-dev-server --mode=development",
     "clearDist": "rm -rf docs/dist/*"
   },
