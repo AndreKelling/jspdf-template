@@ -13,10 +13,10 @@
   },
   "dependencies": {
     "jspdf": "^2.5.1",
-    "svg2pdf.js": "^2.2.2"
+    "svg2pdf.js": "^2.2.3"
   },
   "devDependencies": {
-    "webpack": "^5.89.0",
+    "webpack": "^5.90.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   }
