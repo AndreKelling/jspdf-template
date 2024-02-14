@@ -1,4 +1,4 @@
-import {printPDF} from "../src/app";
+import {printPDF} from "../src/app.js";
 
 /**
  * @type {PrintData}
@@ -40,14 +40,7 @@ const basePrintData = {
         'contact':'Kontaktdetails',
         'bank':'Bankverbindung',
         'taxinfo':'Steuernummer',
-    }
-};
-
-/**
- * @type {PrintData}
- */
-const shortPrintData = {
-    ...basePrintData,
+    },
     'invoice': {
         'number':'2018-15738',
         'date':'28.06.2018',
@@ -71,6 +64,13 @@ const shortPrintData = {
             'total':'438,00 €'
         }
     }
+};
+
+/**
+ * @type {PrintData}
+ */
+const shortPrintData = {
+    ...basePrintData,
 };
 
 /**
