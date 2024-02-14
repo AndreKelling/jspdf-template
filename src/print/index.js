@@ -13,6 +13,10 @@ import text from './partials/text';
 import footer from './partials/footer';
 import logo from './partials/logo';
 
+/**
+ * @param {PrintData} printData
+ * @returns {void}
+ */
 export function printPDF(printData) {
     addFontNormal();
     addFontBold();

@@ -17,14 +17,12 @@ import { printPDF } from "jspdf-invoice";
 
 document.querySelector(".js-print-pdf").addEventListener("click", function() {
     /**
-    * @type {PrintData[]}
+    * @type {PrintData} check PrintData interface in src/print/index.d.ts
     */
     const printData = {
-       ...
+        ...
     }
     
     printPDF(printData);
 });
 ```
-
-Has a little interface helper `PrintData` via JSDoc.
