@@ -1,0 +1,18 @@
+{
+  "name": "jspdf-invoice",
+  "version": "0.1.0",
+  "main": "src/app.js",
+  "author": "André Kelling",
+  "description": "Invoice A4 PDF printing.",
+  "repository": "https://github.com/AndreKelling/jspdf-template",
+  "homepage": "https://andrekelling.github.io/jspdf-template/",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "jspdf": "^2.5.1",
+    "svg2pdf.js": "^2.2.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

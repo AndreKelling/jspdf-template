@@ -75,16 +75,16 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
 
-#  publish:
-#    needs: build
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/download-artifact@v4
-#        with:
-#          name: dist
-#          path: .
-#      - name: Publish package
-#        uses: JS-DevTools/npm-publish@v3
-#        with:
-#          access: public
-#          token: ${{ secrets.NPM_TOKEN }}
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: .
+      - name: Publish package
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          access: public
+          token: ${{ secrets.NPM_TOKEN }}

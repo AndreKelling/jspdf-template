@@ -18,12 +18,19 @@ For demonstration a docs [GitHub page](https://andrekelling.github.io/jspdf-temp
 
 1. `npm run build`
 
-Just stay on development mode. Doesn't need caching manifestation.
 
 ## Development
 
 1. `npm run dev`
 2. `npm run serve`
+
+## Publish
+
+Is done via GitHub action.
+
+* raise version in `dist/package.json`
+
+A copy of the src dir is taken as artifact for the node package in the dist dir.
 
 ## Custom-Font file
 
