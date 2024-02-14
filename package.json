@@ -6,18 +6,17 @@
   "description": "Invoice template and setup for jsPDF usage in ES6.",
   "repository": "https://github.com/AndreKelling/jspdf-template",
   "license": "MIT",
+  "type": "module",
   "scripts": {
-    "build": "webpack --mode=production",
-    "dev": "webpack-dev-server --mode=development",
-    "clearDist": "rm -rf docs/dist/*"
+    "build": "esbuild docs/app-demo.js --bundle --minify --sourcemap --outfile=docs/dist/demo-bundle.js",
+    "dev": "esbuild docs/app-demo.js --bundle --watch --sourcemap --outfile=docs/dist/demo-bundle.js",
+    "serve": "npx http-server docs -p 6260"
   },
   "dependencies": {
     "jspdf": "^2.5.1",
     "svg2pdf.js": "^2.2.3"
   },
   "devDependencies": {
-    "webpack": "^5.90.1",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "esbuild": "^0.20.0"
   }
 }

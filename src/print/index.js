@@ -72,13 +72,13 @@ export default (printData) => {
             doc.setPage(1);
 
             const xOffset = 225;
-			const scale = 0.45; // scaling for finer details
+            const scale = 0.45; // scaling for finer details
 
             doc.svg(svg, {
                 x: xOffset,
                 y: 136,
-				width: width * scale,
-				height: height * scale
+                width: width * scale,
+                height: height * scale
             });
         });
         // <><>><><>><>><><><><><>>><><<><><><><>
@@ -120,7 +120,7 @@ export default (printData) => {
         // REPEATED PAGE COMPONENTS
         // <><>><><>><>><><><><><>>><><<><><><><>
 
-        const pageNr = doc.internal.getNumberOfPages();
+        const pagesCount = doc.internal.getNumberOfPages();
 
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Fold Marks
@@ -129,7 +129,7 @@ export default (printData) => {
         const foldMarksY = [288, 411, 585];
         let n = 0;
 
-        while (n < pageNr) {
+        while (n < pagesCount) {
             n++;
 
             doc.setPage(n);
@@ -145,21 +145,21 @@ export default (printData) => {
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Logo
 
-        const logoLoaded = logo(doc, printData, pageNr);
+        const logoLoaded = logo(doc, printData, pagesCount);
 
         // <><>><><>><>><><><><><>>><><<><><><><>
         // Page Numbers
 
-        if (pageNr > 1) {
+        if (pagesCount > 1) {
             n = 0;
             doc.setFontSize(fontSizes.SmallFontSize);
 
-            while (n < pageNr) {
+            while (n < pagesCount) {
                 n++;
 
                 doc.setPage(n);
 
-                doc.text(n + ' / ' + pageNr, pageCenterX, pageHeight - 20, 'center');
+                doc.text(n + ' / ' + pagesCount, pageCenterX, pageHeight - 20, 'center');
             }
         }
 

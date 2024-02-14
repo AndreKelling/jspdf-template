@@ -12,6 +12,8 @@ Here there is a [demo](https://andrekelling.github.io/jspdf-template/).
 
 ## Build
 
+Creates a bundle JS file which provides the global method `printPDF()`.
+
 For demonstration a docs [GitHub page](https://andrekelling.github.io/jspdf-template/) is build.
 
 1. `npm run build`
@@ -21,6 +23,7 @@ Just stay on development mode. Doesn't need caching manifestation.
 ## Development
 
 1. `npm run dev`
+2. `npm run serve`
 
 ## Custom-Font file
 

@@ -2,8 +2,8 @@ import "svg2pdf.js";
 
 export default async (doc, startY, neededHeight) => {
     const pageHeight = doc.internal.pageSize.height;
-	const pageWidth = doc.internal.pageSize.width;
-	const pageCenterX = pageWidth / 2;
+    const pageWidth = doc.internal.pageSize.width;
+    const pageCenterX = pageWidth / 2;
     const endY = pageHeight - 120; // minus footerHeight
     const newPageY = 140;
 
