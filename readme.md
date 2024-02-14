@@ -10,6 +10,10 @@ Here there is a [demo](https://andrekelling.github.io/jspdf-template/).
 
 1. `npm install`
 
+If you want the usable node package, you can install it via npm:
+
+`npm i jspdf-invoice -S` it is here https://www.npmjs.com/package/jspdf-invoice
+
 ## Build
 
 Creates a bundle JS file which provides the global method `printPDF()`.

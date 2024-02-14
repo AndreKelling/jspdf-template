@@ -1,6 +1,6 @@
 {
   "name": "jspdf-invoice",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "src/app.js",
   "author": "André Kelling",
   "description": "Invoice A4 PDF printing.",
@@ -14,5 +14,11 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  }
+  },
+  "keywords": [
+    "invoice",
+    "print",
+    "pdf",
+    "jspdf"
+  ]
 }
