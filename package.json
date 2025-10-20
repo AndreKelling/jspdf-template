@@ -1,6 +1,6 @@
 {
   "name": "jspdf-template",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "main": "src/app.js",
   "author": "André Kelling",
   "description": "Invoice template and setup for jsPDF usage in ES6.",
@@ -13,10 +13,10 @@
     "serve": "npx http-server docs -p 6260"
   },
   "dependencies": {
-    "jspdf": "^2.5.1",
-    "svg2pdf.js": "^2.2.3"
+    "jspdf": "^3.0.3",
+    "svg2pdf.js": "^2.6.0"
   },
   "devDependencies": {
-    "esbuild": "^0.20.0"
+    "esbuild": "^0.25.11"
   }
 }
