@@ -4,7 +4,8 @@ An invoice template.
 
 Here there is a [demo](https://andrekelling.github.io/jspdf-template/) how that print is looking like.
 
-It does not work as an ES module in node.js, because JsPDF has an [issue](https://github.com/parallax/jsPDF/issues/783). So it is primarily for bundling into JS for the browser.
+It is primarily for bundling into JS for usage in a browser.
+There was this [issue](https://github.com/parallax/jsPDF/issues/783) which was getting closed. It should work on nodeJS side just without the `.html()` method. Which is not used here. I did not test it yet.
 
 ## Install
 

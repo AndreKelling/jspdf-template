@@ -1,12 +1,13 @@
 # jsPDF Template
 
-This a styled invoice Template [jsPDF](https://github.com/parallax/jsPDF) in an _ES module_ setup.
+This is a styled invoice Template [jsPDF](https://github.com/parallax/jsPDF) in an _ES module_ setup.
 
 Includes [svg2pdf](https://github.com/yWorks/svg2pdf.js) for better SVG support.
 
 Here there is a [demo](https://andrekelling.github.io/jspdf-template/).
 
-It does not work as an ES module in node.js, because JsPDF has an [issue](https://github.com/parallax/jsPDF/issues/783). So it is primarily for bundling into JS for the browser.
+It is primarily for bundling into JS for usage in a browser.
+There was this [issue](https://github.com/parallax/jsPDF/issues/783) which was getting closed. It should work on nodeJS side just without the `.html()` method. Which is not used here. I did not test it yet.
 
 ## Install
 
