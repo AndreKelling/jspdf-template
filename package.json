@@ -13,8 +13,8 @@
     "serve": "npx http-server docs -p 6260"
   },
   "dependencies": {
-    "jspdf": "^3.0.3",
-    "svg2pdf.js": "^2.6.0"
+    "jspdf": "^4.0.0",
+    "svg2pdf.js": "^2.7.0"
   },
   "devDependencies": {
     "esbuild": "^0.25.11"
