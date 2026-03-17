@@ -13,7 +13,7 @@
     "serve": "npx http-server docs -p 6260"
   },
   "dependencies": {
-    "jspdf": "^4.0.0",
+    "jspdf": "^4.2.1",
     "svg2pdf.js": "^2.7.0"
   },
   "devDependencies": {
